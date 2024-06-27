@@ -15,15 +15,16 @@ from colors import *
 
 def format_gcc_output (command):
     
-    FILE_PATH_COLOR = GREEN
-    LINE_NUM_COLOR  = B_MAX_YELLOW
-    MSG_ARROW_COLOR = MAX_YELLOW
-    MSG_COLOR       = CYAN
-    MSG_STR_COLOR   = PURPLE
-    CARET_COLOR     = BOLD_RED
+    FILE_PATH_COLOR   = B_MAX_GREEN
+    LINE_NUM_COLOR    = B_MAX_YELLOW
+    MSG_PROMPT_COLOR  = B_MAX_BLUE
+    MSG_COLOR         = CYAN
+    MSG_STR_COLOR     = PURPLE
+    CODE_PROMPT_COLOR = B_MAX_YELLOW
+    CARET_COLOR       = BOLD_RED
 
-    code_indent = '              '
-    msg_indent = '          '
+    code_indent = '           '
+    msg_indent  = '           '
     term_size = shutil.get_terminal_size()
     term_cols = term_size.columns
 
@@ -64,7 +65,7 @@ def format_gcc_output (command):
         type_str = ''.join([c.upper() if i == 0 else c for i,c in enumerate(type_str)])
         err_buff = ''
         if type_str == 'Error':
-            ERROR_COLOR = BOLD_RED
+            ERROR_COLOR = B_MAX_RED
             err_buff = '  '
         elif type_str == 'Warning':
             ERROR_COLOR = B_MAX_YELLOW
@@ -74,10 +75,11 @@ def format_gcc_output (command):
         error = f" {ERROR_COLOR}{type_str}{RESET}: {err_buff}{FILE_PATH_COLOR}{file_path}{RESET}  :  {LINE_NUM_COLOR}{line_number}{RESET}"
 
         # message
-        prompt = ">>> "
+        prompt = ">>>"
         msg_str = ''.join([c.upper() if i == 0 else c for i,c in enumerate(msg['message'])])
-        msg_str = f"{MSG_ARROW_COLOR}{prompt}{MSG_COLOR}{msg_str}{RESET}"
-        msg_str = textwrap.fill (msg_str, initial_indent=msg_indent, subsequent_indent= msg_indent + f"{'': <{len(prompt)}}", width=term_cols)
+        msg_str = f"{MSG_PROMPT_COLOR}{prompt}  {MSG_COLOR}{msg_str}{RESET}"
+        #msg_str = textwrap.fill (msg_str, initial_indent=msg_indent, subsequent_indent= msg_indent + f"{'': <{len(prompt)}}", width=term_cols)
+        msg_str = textwrap.fill (msg_str, initial_indent=msg_indent, subsequent_indent= msg_indent + f"{'': <{len(prompt) + 2}}", width=term_cols)
         msg_str = re.sub (r"‘([^‘]*)’", rf"‘{MSG_STR_COLOR}\1{RESET}{MSG_COLOR}’", msg_str)
 
         # line of code
@@ -98,7 +100,7 @@ def format_gcc_output (command):
                         code_line = f"Unable to find line number {line_number} in \"{file_path}\""
         except FileNotFoundError:
             code_line = f"Unable to find \"{file_path}\""
-        code_line = code_indent + code_line.rstrip('\n')
+        code_line = code_indent + f"{CODE_PROMPT_COLOR}{prompt}{RESET}  " + code_line.rstrip('\n')
 
 
         # caret
