@@ -3,6 +3,10 @@
 
 Enjoy easy-to-read GCC error messages<br>
 
+Go from:<br>
+<img src='standard_output.png' height='350px'>
+
+To<br>
 <img src='output.png' height='350px'>
 
 
