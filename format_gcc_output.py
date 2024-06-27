@@ -1,7 +1,6 @@
 import subprocess
 import sys
 import json
-from stringcolor import *
 import textwrap
 import re
 import shutil
