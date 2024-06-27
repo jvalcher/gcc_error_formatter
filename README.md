@@ -19,16 +19,16 @@ Code line syntax formatting via Pygments is disabled by default, as it can make 
 
 
 
-## Run tests
+## Development
 
+### Run tests
 ```
 $ ./setup_venv
 $ ./run_tests
 ```
 
 
-## Get unformatted errors
-
+### Get unformatted errors
 ```
 $ ./get_unformatted_errors
 ```
