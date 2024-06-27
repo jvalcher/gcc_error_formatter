@@ -36,7 +36,6 @@ Personalize the colors at the top of `format_gcc_output.py` with the values in `
 
 ### Run tests
 ```bash
-$ ./setup_venv
 $ ./run_tests
 ```
 
