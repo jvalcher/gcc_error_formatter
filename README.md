@@ -13,7 +13,7 @@ To<br>
 ## Overview
 
 - Uses the `-fdiagnostics-format=json` flag
-- Works with Make et al. as long as the only `[{` JSON object `}]` in the output is GCC's
+- Works with Make et al. as long as the only `[{` JSON objects `}]` in the output are GCC's
 
 
 ## Usage
