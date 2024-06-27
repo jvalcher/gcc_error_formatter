@@ -3,7 +3,7 @@
 
 Produces concise, easy-to-read GCC error messages<br>
 
-<img src='output_image.png' height='250px'>
+<img src='image.png' height='250px'>
 
 
 ## Overview
