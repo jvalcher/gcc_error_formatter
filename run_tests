@@ -21,7 +21,7 @@ format_gcc_output (lexer, cpp_command)
 
 
 # Make  (not implemented)
-#lexer = 'make'
+#lexer = 'c'
 #make_command = ['make', 'dev']
 
 #format_gcc_output (lexer, make_command)
