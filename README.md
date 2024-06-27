@@ -15,6 +15,7 @@ Produces easy-to-read GCC error messages<br>
 ## Run demonstration
 
 ```
-bash run_test.sh
+$ bash setup.sh
+$ python format_gcc_output.py
 ```
 
