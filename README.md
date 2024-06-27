@@ -15,7 +15,7 @@ Produces concise, easy-to-read GCC error messages<br>
 
 Personalize the colors at the top of `format_gcc_output.py` with the values in `colors.py`.<br>
 <br>
-Code line syntax formatting via Pygments is disabled by default. Enable it by setting the `lexer` variable from `none` to a Pygments lexer short name as shown in `./run_tests`. You can then change the `style` variable at the top of `format_gcc_output.py`.<br>
+Code line syntax formatting via Pygments is disabled by default, as it can begin to look a bit cluttered. Enable it by setting the `lexer` variable from `none` to a Pygments lexer short name as shown in `./run_tests`. You can then change the `style` variable at the top of `format_gcc_output.py`.<br>
 
 
 
