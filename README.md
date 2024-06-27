@@ -15,11 +15,18 @@ Produces concise, easy-to-read GCC error messages<br>
   - Change the other elements' colors individually with the values in `colors.py`
 
 
-## Run demonstration
+## Run tests
 
+- Bash:
 ```
-$ bash setup.sh
-$ python format_gcc_output.py
+$ ./setup_venv
+$ ./run_tests
 ```
 
 
+## Get unformatted errors
+
+- Bash:
+```
+$ ./get_unformatted_erros
+```

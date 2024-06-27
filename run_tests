@@ -1,0 +1,29 @@
+#!./venv/bin/python
+
+from format_gcc_output import format_gcc_output
+
+
+# Find lexer "short" names: https://pygments.org/docs/lexers/
+
+
+# C
+lexer = 'c'
+c_command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
+
+format_gcc_output (lexer, c_command)
+
+
+# C++
+lexer = 'cpp'
+cpp_command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
+
+format_gcc_output (lexer, cpp_command)
+
+
+# Make  (not implemented)
+#lexer = 'make'
+#make_command = ['make', 'dev']
+
+#format_gcc_output (lexer, style, make_command)
+
+

@@ -39,7 +39,7 @@ style = 'dracula'
 
 
 
-def print_message (lexer, style, msg, type_str, file_path, line_number, caret_cols):
+def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
 
     term_size = shutil.get_terminal_size()
     term_cols = term_size.columns
@@ -103,15 +103,15 @@ def print_message (lexer, style, msg, type_str, file_path, line_number, caret_co
     print ("")
 
 
-def format_gcc_output (lexer, style, command):
+def format_gcc_output (lexer, command):
     
-    # run gcc
+    # run command, get output
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     stdout, stderr = process.communicate()
     output = stdout + stderr
     process.kill()
 
-    # proceed through output intil GCC json reached
+    # convert GCC json to dict
     i = output.find("[{")
     if i == -1:
         print ("No error messages found")
@@ -145,28 +145,8 @@ def format_gcc_output (lexer, style, command):
 
         caret_cols = min(caret_cols_list)
 
-        print_message (lexer, style, msg['message'], type_str, file_path, line_number, caret_cols)
+        print_message (lexer, msg['message'], type_str, file_path, line_number, caret_cols)
 
     print ("")
-
-
-if __name__ == '__main__':
-
-    # Lexers: https://pygments.org/docs/lexers/
-   
-    # C
-    lexer = 'c'
-    c_command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
-    format_gcc_output (lexer, style, c_command)
-
-    # C++
-    lexer = 'cpp'
-    cpp_command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
-    format_gcc_output (lexer, style, cpp_command)
-
-    # Make  (not implemented)
-    #lexer = 'make'
-    #make_command = ['make', 'dev']
-    #format_gcc_output (lexer, style, make_command)
 
 
