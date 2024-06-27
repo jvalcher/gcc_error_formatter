@@ -10,7 +10,6 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import Terminal256Formatter
 from colors import *        # ./colors.py
 
-
 FILE_PATH_COLOR   = B_MAX_GREEN
 LINE_NUM_COLOR    = B_MAX_YELLOW
 MSG_PROMPT_COLOR  = B_MAX_BLUE
@@ -21,7 +20,6 @@ CARET_COLOR       = BOLD_RED
 
 term_size = shutil.get_terminal_size()
 term_cols = term_size.columns
-
 
 
 def print_message (lexer, style, msg, type_str, file_path, line_number, caret_cols):
@@ -86,7 +84,6 @@ def print_message (lexer, style, msg, type_str, file_path, line_number, caret_co
     print ("")
 
 
-
 def format_gcc_output (lexer, style, command):
     
     # run gcc
@@ -131,9 +128,7 @@ def format_gcc_output (lexer, style, command):
 
         print_message (lexer, style, msg['message'], type_str, file_path, line_number, caret_cols)
 
-
     print ("")
-
 
 
 if __name__ == '__main__':
