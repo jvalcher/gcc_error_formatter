@@ -1,7 +1,7 @@
 
 # GCC error message formatter
 
-Produces concise, easy-to-read GCC error messages<br>
+Produces easy-to-read GCC error messages<br>
 
 <img src='output.png' height='250px'>
 
