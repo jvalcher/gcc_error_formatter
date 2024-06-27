@@ -16,7 +16,7 @@ from colors import *
     See ./colors.py
 '''
 ERR_COLOR               = B_MAX_RED
-WARN_COLOR              = B_MAX_YELLOW
+WARN_COLOR              = B_MAX_CYAN
 FILE_PATH_COLOR         = B_MAX_GREEN
 LINE_NUM_COLOR          = B_MAX_YELLOW
 MSG_PROMPT_COLOR        = B_MAX_BLUE
