@@ -2,9 +2,7 @@
 
 from format_gcc_output import format_gcc_output
 
-
-# Find lexer "short" names: https://pygments.org/docs/lexers/
-
+# Pygments lexer "short" names: https://pygments.org/docs/lexers/
 
 # C
 lexer = 'c'
