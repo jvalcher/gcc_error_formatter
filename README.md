@@ -1,5 +1,5 @@
 
-# GCC error message formatter
+# GCC error formatting
 
 Produces easy-to-read GCC error messages<br>
 
