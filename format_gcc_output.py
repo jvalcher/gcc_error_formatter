@@ -31,7 +31,7 @@ WARN_CARET_COLOR        = WARN_COLOR
 '''
     Code line style
     -------
-    More Pyments styles at:  https://pygments.org/styles/
+    More Pygments styles at:  https://pygments.org/styles/
 '''
 style = 'default'
 style = 'dracula'
