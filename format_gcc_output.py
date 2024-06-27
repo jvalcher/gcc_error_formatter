@@ -136,18 +136,25 @@ def format_gcc_output (command):
     # get start of json
     i = output.find('[{')
     if i == -1:
-        print ("No error messages found")
+        print ("No error messages found\n")
         sys.exit(1)
                       
     # get end of json
     j = output.rindex("}]")
 
+    # get json string
     json_str = output[i:j+2]
     #print (output[i:j+2])
     #sys.exit(0)
 
-    err_jsons = json_str.split("\n[]\n")
-    #print (err_jsons[1])
+    # split json [{ objects }] into separate strings
+    bracket_splits = json_str.split("\n[]\n")
+    err_jsons = []
+    for split in bracket_splits:
+        splits = split.split('\n')
+        for s in splits:
+            err_jsons.append(s)
+    #print(newline_splits)
     #sys.exit(0)
 
     for err in err_jsons:
