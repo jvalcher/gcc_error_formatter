@@ -17,7 +17,7 @@ Produces easy-to-read GCC error messages<br>
 ```python
 from format_gcc_output import format_gcc_output
 
-command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
+command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', 'test2.cpp']
 
 format_gcc_output (command)
 ```

@@ -1,3 +1,4 @@
+a.out
 venv
-test*
+test.py
 __pycache__
