@@ -1,7 +1,7 @@
 
-# GCC error message parser
+# GCC error message formatter
 
-Produces easy-to-read GCC error messages<br>
+Produces easy-to-read GCC error and warning messages<br>
 
 <img src='example_output.png' height='250px'>
 
