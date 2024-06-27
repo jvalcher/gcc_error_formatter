@@ -13,7 +13,7 @@ Produces easy-to-read GCC error messages<br>
 
 ## Usage
 
-- Install Pygments
+- Install Pygments for code line formatting (disabled by default)
 ```bash
 $ pip install pygments
 ```
@@ -27,6 +27,7 @@ command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2'
 
 format_gcc_output (lexer, command)
 ```
+- Find lexer "short" names at: https://pygments.org/docs/lexers/
 
 ## Color configuration
 
