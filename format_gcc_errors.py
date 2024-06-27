@@ -1,4 +1,5 @@
 import subprocess
+import sys
 import json
 from stringcolor import *
 import textwrap
@@ -37,6 +38,9 @@ output = stdout + stderr
 
 # proceed through output intil GCC json reached
 i = output.find("[{")
+if i == -1:
+    print ("No error messages found")
+    sys.exit(1)
 j = output.rindex("}]")
 msg_dict = json.loads(output[i:j+2])
 
@@ -107,3 +111,5 @@ for msg in msg_dict:
     err_num += 1
 
 print ("")
+
+sys.exit(0)
