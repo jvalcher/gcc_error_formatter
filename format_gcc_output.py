@@ -43,8 +43,8 @@ def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
 
     term_size = shutil.get_terminal_size()
     term_cols = term_size.columns
-    code_indent = '           '
-    msg_indent  = '           '
+    code_indent = '          '
+    msg_indent  = '          '
 
     # Error  :  <file path>  :  <line number>
     type_str = ''.join([c.upper() if i == 0 else c for i,c in enumerate(type_str)])
