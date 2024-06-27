@@ -15,7 +15,7 @@ Produces easy-to-read GCC error messages<br>
 
 - Install Pygments
 ```bash
-$ ./setup_venv
+$ pip install pygments
 ```
 - Call the script
 ```python
