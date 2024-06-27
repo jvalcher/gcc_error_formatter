@@ -44,3 +44,6 @@ $ ./run_tests
 ```bash
 $ ./get_unformatted_errors
 ```
+
+### To do
+- Add an option to list all child "note" error messages as well
