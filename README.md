@@ -18,7 +18,6 @@ Produces concise, easy-to-read GCC error messages<br>
 
 ## Run tests
 
-- Bash:
 ```
 $ ./setup_venv
 $ ./run_tests
@@ -27,7 +26,6 @@ $ ./run_tests
 
 ## Get unformatted errors
 
-- Bash:
 ```
 $ ./get_unformatted_errors
 ```
