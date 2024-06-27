@@ -42,6 +42,8 @@ def format_gcc_output (command):
     j = output.rindex("}]")
     msg_dict = json.loads(output[i:j+2])
 
+    #print (json.dumps (msg_dict, indent=4))
+
     print ("")
     print ("")
 
@@ -55,6 +57,7 @@ def format_gcc_output (command):
         caret_cols = 0
         caret_indent = ''
         for loc in msg['locations']:
+
             if 'caret' in loc:
                 caret = loc['caret']
                 file_path = caret.get('file')
@@ -75,11 +78,10 @@ def format_gcc_output (command):
         error = f" {ERROR_COLOR}{type_str}{RESET}: {err_buff}{FILE_PATH_COLOR}{file_path}{RESET}  :  {LINE_NUM_COLOR}{line_number}{RESET}"
 
         # message
-        prompt = ">>>"
+        prompt = ">>>  "
         msg_str = ''.join([c.upper() if i == 0 else c for i,c in enumerate(msg['message'])])
-        msg_str = f"{MSG_PROMPT_COLOR}{prompt}  {MSG_COLOR}{msg_str}{RESET}"
-        #msg_str = textwrap.fill (msg_str, initial_indent=msg_indent, subsequent_indent= msg_indent + f"{'': <{len(prompt)}}", width=term_cols)
-        msg_str = textwrap.fill (msg_str, initial_indent=msg_indent, subsequent_indent= msg_indent + f"{'': <{len(prompt) + 2}}", width=term_cols)
+        msg_str = f"{MSG_PROMPT_COLOR}{prompt}{MSG_COLOR}{msg_str}{RESET}"
+        msg_str = textwrap.fill (msg_str, initial_indent=msg_indent, subsequent_indent= msg_indent + f"{'': <{len(prompt)}}", width=term_cols)
         msg_str = re.sub (r"‘([^‘]*)’", rf"‘{MSG_STR_COLOR}\1{RESET}{MSG_COLOR}’", msg_str)
 
         # line of code
@@ -100,7 +102,7 @@ def format_gcc_output (command):
                         code_line = f"Unable to find line number {line_number} in \"{file_path}\""
         except FileNotFoundError:
             code_line = f"Unable to find \"{file_path}\""
-        code_line = code_indent + f"{CODE_PROMPT_COLOR}{prompt}{RESET}  " + code_line.rstrip('\n')
+        code_line = code_indent + f"{CODE_PROMPT_COLOR}{prompt}{RESET}" + code_line.rstrip('\n')
 
 
         # caret
@@ -109,7 +111,7 @@ def format_gcc_output (command):
             caret_indent = ' ' + caret_indent
         if len(caret_indent) == 0:
             code_indent = code_indent[1:]
-        caret = code_indent + caret_indent + f'{CARET_COLOR}⤴{RESET}'
+        caret = code_indent + caret_indent + f'{"": <{len(prompt)}}' + f'{CARET_COLOR}⤴{RESET}'
 
         # print error message
         print (error)
