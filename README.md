@@ -28,5 +28,5 @@ $ ./run_tests
 
 - Bash:
 ```
-$ ./get_unformatted_erros
+$ ./get_unformatted_errors
 ```
