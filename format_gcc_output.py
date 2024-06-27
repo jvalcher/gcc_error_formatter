@@ -22,9 +22,6 @@ def format_gcc_output (command):
     MSG_STR_COLOR   = PURPLE
     CARET_COLOR     = BOLD_RED
 
-    num = 0
-    err_num = 0
-    warn_num = 0
     code_indent = '              '
     msg_indent = '          '
     term_size = shutil.get_terminal_size()
@@ -119,20 +116,17 @@ def format_gcc_output (command):
         print (caret)
         print ("")
 
-        err_num += 1
-
     print ("")
 
 
 if __name__ == '__main__':
 
     # C
-    compile_command_1 = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
+    c_command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
+    format_gcc_output (c_command)
 
     # C++
-    compile_command_2 = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
-
-    format_gcc_output (compile_command_1)
-    format_gcc_output (compile_command_2)
+    cpp_command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
+    format_gcc_output (cpp_command)
 
 
