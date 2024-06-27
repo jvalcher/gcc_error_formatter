@@ -1,7 +1,7 @@
 
 # GCC error formatting
 
-Produces easy-to-read GCC error messages<br>
+Enjoy easy-to-read GCC error messages<br>
 
 <img src='output.png' height='250px'>
 
