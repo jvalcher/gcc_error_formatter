@@ -15,7 +15,7 @@ FILE_PATH_COLOR   = B_MAX_GREEN
 LINE_NUM_COLOR    = B_MAX_YELLOW
 MSG_PROMPT_COLOR  = B_MAX_BLUE
 MSG_COLOR         = CYAN
-MSG_STR_COLOR     = PURPLE
+MSG_STR_COLOR     = YELLOW
 CODE_PROMPT_COLOR = B_MAX_YELLOW
 CARET_COLOR       = BOLD_RED
 
@@ -24,7 +24,7 @@ term_cols = term_size.columns
 
 
 
-def print_message (msg, type_str, file_path, line_number, caret_cols):
+def print_message (lexer, style, msg, type_str, file_path, line_number, caret_cols):
 
     code_indent = '           '
     msg_indent  = '           '
@@ -60,8 +60,8 @@ def print_message (msg, type_str, file_path, line_number, caret_cols):
                     code_line = orig_code_line.lstrip()
                     stripped_spaces = len(orig_code_line) - len(code_line)
                     code_line = highlight (code_line,
-                                        lexer = get_lexer_by_name('c'),
-                                        formatter = Terminal256Formatter (style = 'paraiso-dark'))
+                                        lexer = get_lexer_by_name(lexer),
+                                        formatter = Terminal256Formatter (style = style))
                     break
                 else:
                     code_line = f"Unable to find line number {line_number} in \"{file_path}\""
@@ -87,7 +87,7 @@ def print_message (msg, type_str, file_path, line_number, caret_cols):
 
 
 
-def format_gcc_output (command):
+def format_gcc_output (lexer, style, command):
     
     # run gcc
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -129,7 +129,7 @@ def format_gcc_output (command):
 
         caret_cols = min(caret_cols_list)
 
-        print_message (msg['message'], type_str, file_path, line_number, caret_cols)
+        print_message (lexer, style, msg['message'], type_str, file_path, line_number, caret_cols)
 
 
     print ("")
@@ -138,15 +138,31 @@ def format_gcc_output (command):
 
 if __name__ == '__main__':
 
+    # Lexers: https://pygments.org/docs/lexers/
+    # Styles: https://pygments.org/styles/
+
+    style = 'default'
+    style = 'dracula'
+    #style = 'monokai'
+    #style = 'github-dark'
+    #style = 'lightbulb'
+    #style = 'one-dark'
+    #style = 'gruvbox-dark'
+    #style = 'coffee'
+
     # C
+    lexer = 'c'
     c_command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
-    format_gcc_output (c_command)
+    format_gcc_output (lexer, style, c_command)
 
     # C++
+    lexer = 'cpp'
     cpp_command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
-    format_gcc_output (cpp_command)
+    format_gcc_output (lexer, style, cpp_command)
 
-    # Make
+    # Make  (not implemented)
+    #lexer = 'make'
     #make_command = ['make', 'dev']
+    #format_gcc_output (lexer, style, make_command)
 
 
