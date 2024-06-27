@@ -58,6 +58,9 @@ for msg in msg_dict:
             line_number = caret.get('line')
             caret_cols_list.append(caret.get('column'))
 
+    # Error  :  <file path>  :  <line number>
+    error = f" {ERROR_COLOR}Error {err_num}{RESET}  :  {FILE_PATH_COLOR}{file_path}{RESET}  :  {LINE_NUM_COLOR}{line_number}{RESET}"
+
     # message
     prompt = ">>> "
     msg_str = ''.join([c.upper() if i == 0 else c for i,c in enumerate(msg['message'])])
@@ -95,7 +98,7 @@ for msg in msg_dict:
     caret = code_indent + caret_indent + f'{CARET_COLOR}⤴{RESET}'
 
     # print error message
-    print (f" {ERROR_COLOR}Error {err_num}{RESET}  :  {FILE_PATH_COLOR}{file_path}{RESET}  :  {LINE_NUM_COLOR}{line_number}{RESET}")
+    print (error)
     print (msg_str)
     print (code_line)
     print (caret)
