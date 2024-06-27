@@ -122,53 +122,67 @@ def print_message (msg, type_str, file_path, line_number, caret_cols):
 
 def format_gcc_output (command):
     
+    global err_num
+    global warn_num
+
     # run command, get output
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     stdout, stderr = process.communicate()
     output = stdout + stderr
     process.kill()
-    global err_num
-    global warn_num
+    #print (output)
+    #sys.exit(0)
 
-    # convert GCC json to dict
-    i = output.find("[{")
+    # get start of json
+    i = output.find('[{')
     if i == -1:
         print ("No error messages found")
         sys.exit(1)
+                      
+    # get end of json
     j = output.rindex("}]")
-    msg_dict = json.loads(output[i:j+2])
 
-    #print (json.dumps (msg_dict, indent=4))
+    json_str = output[i:j+2]
+    #print (output[i:j+2])
+    #sys.exit(0)
 
-    print ("")
-    print ("")
+    err_jsons = json_str.split("\n[]\n")
+    #print (err_jsons[1])
+    #sys.exit(0)
 
-    err_num = 1
-    warn_num = 1
+    for err in err_jsons:
 
-    # print errors
-    for msg in msg_dict:
+        # convert to dict
+        msg_dict = json.loads(err)
+        #print (json.dumps (msg_dict, indent=4))
+        #sys.exit(0)
 
-        type_str = msg['kind']
-        file_path = ''
-        line_number = 0
-        caret_cols_list = []
-        caret_cols = 0
-        caret_indent = ''
+        print ("")
+        print ("")
 
-        # locations
-        for loc in msg['locations']:
+        err_num = 1
+        warn_num = 1
 
-            if 'caret' in loc:
-                caret = loc['caret']
-                file_path = caret.get('file')
-                line_number = caret.get('line')
-                caret_cols_list.append(caret.get('column'))
+        # print errors
+        for msg in msg_dict:
 
-        caret_cols = min(caret_cols_list)
+            type_str = msg['kind']
+            file_path = ''
+            line_number = 0
+            caret_cols_list = []
+            caret_cols = 0
+            caret_indent = ''
 
-        print_message (msg['message'], type_str, file_path, line_number, caret_cols)
+            # locations
+            for loc in msg['locations']:
 
-    print ("")
+                if 'caret' in loc:
+                    caret = loc['caret']
+                    file_path = caret.get('file')
+                    line_number = caret.get('line')
+                    caret_cols_list.append(caret.get('column'))
 
+            caret_cols = min(caret_cols_list)
+
+            print_message (msg['message'], type_str, file_path, line_number, caret_cols)
 
