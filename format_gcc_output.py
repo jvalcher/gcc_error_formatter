@@ -8,8 +8,13 @@ import shutil
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import Terminal256Formatter
-from colors import *        # ./colors.py
+from colors import *
 
+'''
+    Element colors
+    -------
+    See ./colors.py
+'''
 FILE_PATH_COLOR   = B_MAX_GREEN
 LINE_NUM_COLOR    = B_MAX_YELLOW
 MSG_PROMPT_COLOR  = B_MAX_BLUE
@@ -18,12 +23,26 @@ MSG_STR_COLOR     = YELLOW
 CODE_PROMPT_COLOR = B_MAX_YELLOW
 CARET_COLOR       = BOLD_RED
 
-term_size = shutil.get_terminal_size()
-term_cols = term_size.columns
+'''
+    Code line style
+    -------
+    More Pyments styles at:  https://pygments.org/styles/
+'''
+style = 'default'
+style = 'dracula'
+#style = 'monokai'
+#style = 'github-dark'
+#style = 'lightbulb'
+#style = 'one-dark'
+#style = 'gruvbox-dark'
+#style = 'coffee'
+
 
 
 def print_message (lexer, style, msg, type_str, file_path, line_number, caret_cols):
 
+    term_size = shutil.get_terminal_size()
+    term_cols = term_size.columns
     code_indent = '           '
     msg_indent  = '           '
 
@@ -134,17 +153,7 @@ def format_gcc_output (lexer, style, command):
 if __name__ == '__main__':
 
     # Lexers: https://pygments.org/docs/lexers/
-    # Styles: https://pygments.org/styles/
-
-    style = 'default'
-    style = 'dracula'
-    #style = 'monokai'
-    #style = 'github-dark'
-    #style = 'lightbulb'
-    #style = 'one-dark'
-    #style = 'gruvbox-dark'
-    #style = 'coffee'
-
+   
     # C
     lexer = 'c'
     c_command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
