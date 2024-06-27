@@ -4,9 +4,6 @@ import json
 import textwrap
 import re
 import shutil
-from pygments import highlight
-from pygments.lexers import get_lexer_by_name
-from pygments.formatters import Terminal256Formatter
 from colors import *
 
 '''
@@ -27,23 +24,9 @@ WARN_CODE_PROMPT_COLOR  = WARN_COLOR
 ERR_CARET_COLOR         = ERR_COLOR
 WARN_CARET_COLOR        = WARN_COLOR
 
-'''
-    Code line style
-    -------
-    More Pygments styles at:  https://pygments.org/styles/
-'''
-style = 'default'
-style = 'dracula'
-#style = 'monokai'
-#style = 'github-dark'
-#style = 'lightbulb'
-#style = 'one-dark'
-#style = 'gruvbox-dark'
-#style = 'coffee'
-
-
 err_num = 1
 warn_num = 1
+
 
 
 def create_indent_string (n):
@@ -53,7 +36,7 @@ def create_indent_string (n):
     return indent
 
 
-def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
+def print_message (msg, type_str, file_path, line_number, caret_cols):
 
     term_size = shutil.get_terminal_size()
     term_cols = term_size.columns
@@ -105,10 +88,6 @@ def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
                     orig_code_line = line
                     code_line = orig_code_line.lstrip()
                     stripped_spaces = len(orig_code_line) - len(code_line)
-                    if lexer != 'none':
-                        code_line = highlight (code_line,
-                                            lexer = get_lexer_by_name(lexer),
-                                            formatter = Terminal256Formatter (style = style))
                     break
                 else:
                     code_line = f"Unable to find line number {line_number} in \"{file_path}\""
@@ -141,7 +120,7 @@ def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
     print ("")
 
 
-def format_gcc_output (lexer, command):
+def format_gcc_output (command):
     
     # run command, get output
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -188,7 +167,7 @@ def format_gcc_output (lexer, command):
 
         caret_cols = min(caret_cols_list)
 
-        print_message (lexer, msg['message'], type_str, file_path, line_number, caret_cols)
+        print_message (msg['message'], type_str, file_path, line_number, caret_cols)
 
     print ("")
 

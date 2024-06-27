@@ -2,31 +2,18 @@
 
 from format_gcc_output import format_gcc_output
 
-# `lexer` applies to the code line's formatting
-# Find lexer "short" names here: https://pygments.org/docs/lexers/
-# Set to 'none' to disable
-# Choose style at the top of format_gcc_output.py
 
 
-# C++
-#lexer = 'cpp'
-lexer = 'none'
-cpp_command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
-
-format_gcc_output (lexer, cpp_command)
+command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
+format_gcc_output (command)
 
 
-# C
-lexer = 'c'
-c_command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
-
-format_gcc_output (lexer, c_command)
+command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
+format_gcc_output (command)
 
 
 # Make example call
-#lexer = 'c'
-#make_command = ['make', 'dev']
-
-#format_gcc_output (lexer, make_command)
+#command = ['make', 'dev']
+#format_gcc_output (command)
 
 
