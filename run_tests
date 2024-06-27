@@ -1,4 +1,4 @@
-#!./venv/bin/python
+#!/bin/python
 
 from format_gcc_output import format_gcc_output
 
