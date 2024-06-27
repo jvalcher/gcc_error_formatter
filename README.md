@@ -21,7 +21,6 @@ Code line syntax formatting via Pygments is disabled by default, as it can begin
 
 ## Run tests
 
-- Bash:
 ```
 $ ./setup_venv
 $ ./run_tests
@@ -30,7 +29,6 @@ $ ./run_tests
 
 ## Get unformatted errors
 
-- Bash:
 ```
 $ ./get_unformatted_errors
 ```
