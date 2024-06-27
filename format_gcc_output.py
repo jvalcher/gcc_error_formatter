@@ -106,9 +106,10 @@ def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
                     orig_code_line = line
                     code_line = orig_code_line.lstrip()
                     stripped_spaces = len(orig_code_line) - len(code_line)
-                    code_line = highlight (code_line,
-                                        lexer = get_lexer_by_name(lexer),
-                                        formatter = Terminal256Formatter (style = style))
+                    if lexer != 'none':
+                        code_line = highlight (code_line,
+                                            lexer = get_lexer_by_name(lexer),
+                                            formatter = Terminal256Formatter (style = style))
                     break
                 else:
                     code_line = f"Unable to find line number {line_number} in \"{file_path}\""
@@ -121,7 +122,6 @@ def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
     elif type_str == 'Error':
         CODE_PROMPT_COLOR = ERR_CODE_PROMPT_COLOR
     code_line = code_indent + f"{CODE_PROMPT_COLOR}{prompt}{RESET}" + code_line.rstrip('\n')
-
 
     # caret
     CARET_COLOR = MISC_COLOR

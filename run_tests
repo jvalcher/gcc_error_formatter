@@ -3,7 +3,10 @@
 from format_gcc_output import format_gcc_output
 
 
+# `lexer` applies to the code line's formatting
 # Find lexer "short" names: https://pygments.org/docs/lexers/
+# Choose style in format_gcc_output.py
+# Set to 'none' to disable
 
 
 # C
@@ -14,7 +17,8 @@ format_gcc_output (lexer, c_command)
 
 
 # C++
-lexer = 'cpp'
+#lexer = 'cpp'
+lexer = 'none'
 cpp_command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
 
 format_gcc_output (lexer, cpp_command)
