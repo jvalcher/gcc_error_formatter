@@ -15,7 +15,6 @@ from colors import *
 
 def format_gcc_output (command):
     
-    ERROR_COLOR     = BOLD_RED
     FILE_PATH_COLOR = GREEN
     LINE_NUM_COLOR  = B_MAX_YELLOW
     MSG_ARROW_COLOR = MAX_YELLOW
@@ -23,7 +22,9 @@ def format_gcc_output (command):
     MSG_STR_COLOR   = PURPLE
     CARET_COLOR     = BOLD_RED
 
-    err_num = 1
+    num = 0
+    err_num = 0
+    warn_num = 0
     code_indent = '              '
     msg_indent = '          '
     term_size = shutil.get_terminal_size()
@@ -63,7 +64,17 @@ def format_gcc_output (command):
                 caret_cols_list.append(caret.get('column'))
 
         # Error  :  <file path>  :  <line number>
-        error = f" {ERROR_COLOR}Error {err_num}{RESET}  :  {FILE_PATH_COLOR}{file_path}{RESET}  :  {LINE_NUM_COLOR}{line_number}{RESET}"
+        type_str = ''.join([c.upper() if i == 0 else c for i,c in enumerate(type_str)])
+        err_buff = ''
+        if type_str == 'Error':
+            ERROR_COLOR = BOLD_RED
+            err_buff = '  '
+        elif type_str == 'Warning':
+            ERROR_COLOR = B_MAX_YELLOW
+            err_buff = ''
+        else:
+            ERROR_COLOR = B_MAX_BLUE
+        error = f" {ERROR_COLOR}{type_str}{RESET}: {err_buff}{FILE_PATH_COLOR}{file_path}{RESET}  :  {LINE_NUM_COLOR}{line_number}{RESET}"
 
         # message
         prompt = ">>> "
@@ -116,10 +127,10 @@ def format_gcc_output (command):
 if __name__ == '__main__':
 
     # C
-    compile_command_1 = ['gcc', '-Wall', '-Wextra', '-Werror', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
+    compile_command_1 = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test1', 'test1.c']
 
     # C++
-    compile_command_2 = ['g++', '-Wall', '-Wextra', '-Werror', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
+    compile_command_2 = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
 
     format_gcc_output (compile_command_1)
     format_gcc_output (compile_command_2)
