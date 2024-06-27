@@ -17,6 +17,7 @@ from colors import *
 '''
 ERR_COLOR               = B_MAX_RED
 WARN_COLOR              = B_MAX_CYAN
+MISC_COLOR              = B_MAX_PURPLE
 FILE_PATH_COLOR         = B_MAX_GREEN
 LINE_NUM_COLOR          = B_MAX_YELLOW
 MSG_PROMPT_COLOR        = B_MAX_BLUE
@@ -64,6 +65,7 @@ def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
     global warn_num
 
     # Error  :  <file path>  :  <line number>
+    TYPE_COLOR = MISC_COLOR
     type_str = ''.join([c.upper() if i == 0 else c for i,c in enumerate(type_str)])
     err_buff = ''
     msg_num = -1
@@ -80,7 +82,9 @@ def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
         warn_num += 1
         err_buff = create_indent_string (max_err_dig - len(str(msg_num)))
     else:
-        ERROR_COLOR = B_MAX_BLUE
+        msg_num = '\b'
+        err_buff = create_indent_string (len('Warning') - len(type_str))
+        err_buff = create_indent_string ((max_err_dig - len(msg_num)) + len(err_buff) + 2)
         warn_num = ''
 
     error = f"{err_buff}{TYPE_COLOR}{type_str} {str(msg_num)}{RESET}:  {FILE_PATH_COLOR}{file_path}{RESET} : {LINE_NUM_COLOR}{line_number}{RESET}"
@@ -110,14 +114,17 @@ def print_message (lexer, msg, type_str, file_path, line_number, caret_cols):
                     code_line = f"Unable to find line number {line_number} in \"{file_path}\""
     except FileNotFoundError:
         code_line = f"Unable to find \"{file_path}\""
+
+    CODE_PROMPT_COLOR = MISC_COLOR
     if type_str == 'Warning':
         CODE_PROMPT_COLOR = WARN_CODE_PROMPT_COLOR
-    if type_str == 'Error':
+    elif type_str == 'Error':
         CODE_PROMPT_COLOR = ERR_CODE_PROMPT_COLOR
     code_line = code_indent + f"{CODE_PROMPT_COLOR}{prompt}{RESET}" + code_line.rstrip('\n')
 
 
     # caret
+    CARET_COLOR = MISC_COLOR
     if type_str == 'Warning':
         CARET_COLOR = WARN_CARET_COLOR
     elif type_str == 'Error':
