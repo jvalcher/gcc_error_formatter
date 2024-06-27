@@ -11,7 +11,24 @@ Produces concise, easy-to-read GCC error messages<br>
 - Uses the `-fdiagnostics-format=json` flag
 - Works with Make et al. as long as the only `[{` JSON object `}]` in the output is GCC's
 
-### Color configuration
+## Usage
+
+- Install Pygments
+```bash
+$ ./setup_venv
+```
+- Call the script
+```python
+from format_gcc_output import format_gcc_output
+
+#lexer = 'cpp'
+lexer = 'none'
+command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', '-o', 'test2', 'test2.cpp']
+
+format_gcc_output (lexer, command)
+```
+
+## Color configuration
 
 Personalize the colors at the top of `format_gcc_output.py` with the values in `colors.py`.<br>
 <br>
@@ -22,13 +39,13 @@ Code line syntax formatting via Pygments is disabled by default, as it can make 
 ## Development
 
 ### Run tests
-```
+```bash
 $ ./setup_venv
 $ ./run_tests
 ```
 
 
 ### Get unformatted errors
-```
+```bash
 $ ./get_unformatted_errors
 ```
