@@ -1,16 +1,25 @@
-#!/bin/python
+#!/usr/bin/env python3
 
 from format_gcc_output import format_gcc_output
+import subprocess
 
+# Define the bash command
+command = 'find . -type f \( -name "*.c" -o -name "*.cpp" \) -printf "%f\n"'
 
+# Execute the bash command and capture the output
+result = subprocess.run(command, shell=True, capture_output=True, text=True)
 
-command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', 'test2.cpp']
+# Assign the output to a variable
+output = result.stdout
+print(output.splitlines())
+file_list = output.splitlines()
+
+command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', file_list[0]]
+print(command)
 format_gcc_output (command)
 
-
-command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', 'test1.c']
+command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', file_list[1]]
 format_gcc_output (command)
-
 
 # Make example call
 #command = ['make', 'dev']
