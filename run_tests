@@ -7,13 +7,9 @@ from format_gcc_output import format_gcc_output
 command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', 'test2.cpp']
 format_gcc_output (command)
 
+print ("----------------")
 
 command = ['gcc', '-Wall', '-Wextra', '-fdiagnostics-format=json', 'test1.c']
 format_gcc_output (command)
-
-
-# Make example call
-#command = ['make', 'dev']
-#format_gcc_output (command)
 
 
