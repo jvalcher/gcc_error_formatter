@@ -32,7 +32,7 @@ format_gcc_output (command)
 Personalize the colors at the top of `format_gcc_output.py` with the values in `colors.py`.<br>
 
 
-## Tests
+## Development
 
 ### Run tests
 ```bash
