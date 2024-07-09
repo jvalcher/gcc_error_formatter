@@ -1,8 +1,6 @@
 
 # GCC error formatter
 
-Minimalist, easy-to-read GCC error messages<br>
-
 <img src='formatted_output.png' height='350px'>
 
 
@@ -30,13 +28,10 @@ Personalize the colors at the top of `format_gcc_output.py` with the values in `
 
 ## Development
 
-Run tests
 ```bash
 $ ./run_tests
 ```
 
-
-Get unformatted errors
 ```bash
 $ ./get_unformatted_errors
 ```
