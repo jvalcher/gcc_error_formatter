@@ -34,13 +34,13 @@ Personalize the colors at the top of `format_gcc_output.py` with the values in `
 
 ## Development
 
-### Run tests
+Run tests
 ```bash
 $ ./run_tests
 ```
 
 
-### Get unformatted errors
+Get unformatted errors
 ```bash
 $ ./get_unformatted_errors
 ```
