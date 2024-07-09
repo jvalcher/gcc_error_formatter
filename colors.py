@@ -1,3 +1,4 @@
+
 BLACK           = "\033[0;30m"
 RED             = "\033[0;31m"
 GREEN           = "\033[0;32m"
@@ -39,3 +40,4 @@ UNDERLINE       = "\033[4m"
 BLINK           = "\033[5m"
 NEGATIVE        = "\033[7m"
 CROSSED         = "\033[9m"
+

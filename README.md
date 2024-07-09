@@ -21,7 +21,7 @@ To:<br>
 ```python
 from format_gcc_output import format_gcc_output
 
-command = ['g++', '-Wall', '-Wextra', '-fdiagnostics-format=json', 'test2.cpp']
+command = 'g++ -Wall -Wextra -fdiagnostics-format=json test2.cpp'
 
 format_gcc_output (command)
 ```
@@ -32,7 +32,7 @@ format_gcc_output (command)
 Personalize the colors at the top of `format_gcc_output.py` with the values in `colors.py`.<br>
 
 
-## Development
+## Tests
 
 ### Run tests
 ```bash
